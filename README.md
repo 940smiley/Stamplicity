@@ -1,70 +1,60 @@
-# Stamplicity
+# Stamplicity 🦢
 
-Stamplicity is a highly extensible, modular app designed for collectors and sellers of stamps and related collectibles. It supports premium AI-powered add-ons, customizable user workflows, and seamless marketplace integrations, all wrapped in an elegant, professional swan-themed gallery interface.
+> An extensible, modular app for stamp collectors and sellers, featuring AI-powered tools and a swan-themed gallery interface.
+
+## About The Project
+
+Stamplicity is a powerful, modular application designed for the modern stamp collector. It provides a comprehensive suite of tools to manage, identify, and list collectibles for sale across various marketplaces. With premium AI-powered add-ons, customizable workflows, and an elegant swan-themed UI, Stamplicity aims to be the all-in-one solution for both hobbyists and professional sellers.
 
 ## Core Features
 
-### Modular Architecture
+*   **Modular Architecture:** A core app with optional premium add-ons for AI-powered features.
+*   **Customizable Workflows:** API plugin support and configurable settings for a tailored experience.
+*   **Elegant Gallery:** A swan-themed, filterable gallery for managing your collection.
+*   **AI-Powered Identification:** Automatically detect stamp details like type, year, country, and value.
+*   **Marketplace Integration:** List items for sale on eBay, Colnect, HipStamp, and more.
+*   **User-Driven AI Training:** Fine-tune the AI models with your own annotated images.
 
-*   Core app with optional premium add-on modules.
-*   Add-ons include AI models for listing advertisement creation, scheduled post automation, image auto-editing using LLMs and ML CVE.
-*   Additional premium modules suggestions: advanced valuation analytics, provenance verification, automated condition grading, multilingual listing translation, and smart pricing recommendations.
+## Getting Started
 
-### User Settings & Workflow Configurations
+*This section will be updated with instructions on how to set up and run the project locally.*
 
-*   API plugins support with preset and custom options.
-*   Account connectivity for Facebook, Instagram, TikTok, and other social media platforms.
-*   Customizable workflows for batch and individual image processing.
+1.  Clone the repo
+    ```sh
+    git clone https://github.com/your_username/stamplicity.git
+    ```
+2.  Install NPM packages
+    ```sh
+    npm install
+    ```
+3.  Run the app
+    ```sh
+    npm start
+    ```
 
-### Gallery & Image Management
+## Roadmap
 
-*   Elegant, professional swan-themed layout.
-*   Filterable and layout-customizable gallery.
-*   Upload images or import from cloud storage and connected social media accounts.
-*   Individual and batch image processing.
-*   AI-powered identification flow: detects stamp type (single, pair, FDC, FDI, cover, clipping), year, country, denomination, Scott catalog number, estimated value, etc.
-*   Transparent cutout layer creation for each item.
-*   Drag-and-drop grouping interface for user-selected images before processing to group related photos (e.g., front and rear of the same stamp) to avoid duplicate item creation.
+The vision for Stamplicity is extensive. Key areas of development include:
 
-### Marketplace Integrations
+*   **Premium AI Modules:**
+    *   AI-powered listing advertisement creation.
+    *   Scheduled post automation for social media.
+    *   Advanced valuation analytics and smart pricing.
+    *   Provenance verification and automated condition grading.
+*   **Platform Deployment:**
+    *   **iOS App:** A native iOS application built with Swift/Xcode.
+    *   **Windows App:** A C++ application for Windows users.
+    *   **Linux Packaging:** A `.deb` package for easy installation on Debian-based systems.
+*   **AI Model Training:**
+    *   A secure, developer-only backdoor for testing custom AI models.
+    *   An in-app "Train/AI" page for users to annotate images and fine-tune models.
 
-*   Listing capabilities for eBay, Colnect, HipStamp, Delcampe, and other relevant marketplaces.
+## Contributing
 
-## Deployment & CI/CD Pipelines
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-### Hosting
+*This section will be updated with more detailed contribution guidelines.*
 
-*   GitHub Pages for hosting the demo and documentation.
+## License
 
-### Build Pipelines
-
-*   GitHub Actions pipeline for Swift/Xcode to build and release iOS app versions.
-*   C++ build pipeline for Windows (using best known practices such as MSVC or CMake integration).
-*   Linux packaging pipeline producing .deb packages and apt repository support for easy installation and updates.
-
-## AI Model Training & Customization
-
-### Backdoor for Custom Model Testing
-
-*   Provide a secure, developer-only backdoor interface to load and test custom AI models during development and testing phases.
-*   Allow seamless switching between default AI models and custom models without rebuilding the app.
-
-### User-Driven AI Training Page
-
-*   "Train/AI" page where users can upload their own images and annotate them directly within the app.
-*   Support annotation of stamp features, types, and metadata to create custom training datasets.
-*   Enable incremental training or fine-tuning of AI models using user-provided annotated images.
-*   Avoid reliance on external YAML datasets or YOLO configs; instead, use in-app annotation and training workflows.
-
-#### Training Workflow
-
-1.  Upload images and annotate via intuitive UI.
-2.  Validate annotations and metadata.
-3.  Trigger training or fine-tuning process on local or cloud resources.
-4.  Monitor training progress and performance metrics.
-5.  Deploy updated model for immediate use in identification and processing pipelines.
-
-### Security & Access Control
-
-*   Restrict backdoor and training features to authorized users only.
-*   Log all training sessions and model changes for auditability.
+Distributed under the MIT License. See `LICENSE` for more information.

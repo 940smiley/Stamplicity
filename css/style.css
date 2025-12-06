@@ -1,1 +1,87 @@
-/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
+
+/* Swan Theme Color Palette */
+:root {
+    --bg-color: #f8f9fa; /* Off-white, like a swan's feathers */
+    --header-bg: #ffffff;
+    --text-color: #343a40; /* Dark charcoal grey */
+    --accent-color: #4a90e2; /* A calm, water-like blue */
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Basic Body Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Header Styles */
+header {
+    background-color: var(--header-bg);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    margin: 0;
+    font-family: 'Lora', serif;
+    font-size: 2rem;
+    color: var(--text-color);
+}
+
+header nav a {
+    margin-left: 1.5rem;
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+header nav a:hover {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+/* Main Content Styles */
+main {
+    padding: 2rem;
+}
+
+/* Gallery Grid Styles */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    background-color: var(--header-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--header-bg);
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
+    color: #6c757d;
+}
