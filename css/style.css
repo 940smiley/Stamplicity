@@ -85,3 +85,26 @@ footer {
     margin-top: 2rem;
     color: #6c757d;
 }
+
+/* Filter Container Styles */
+.filter-container {
+    margin-bottom: 2rem;
+}
+
+#filterInput {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--header-bg);
+    color: var(--text-color);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#filterInput:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
