@@ -1,60 +1,119 @@
 # Stamplicity 🦢
 
-> An extensible, modular app for stamp collectors and sellers, featuring AI-powered tools and a swan-themed gallery interface.
+**AI-Powered Stamp Identification, Valuation & eBay Listing Platform**
 
-## About The Project
+Stamplicity is a comprehensive platform for stamp collectors that combines AI-powered identification, automated valuation, and seamless eBay listing capabilities.
 
-Stamplicity is a powerful, modular application designed for the modern stamp collector. It provides a comprehensive suite of tools to manage, identify, and list collectibles for sale across various marketplaces. With premium AI-powered add-ons, customizable workflows, and an elegant swan-themed UI, Stamplicity aims to be the all-in-one solution for both hobbyists and professional sellers.
+## Features
 
-## Core Features
+### Current (v1.0)
+- ✅ **AI Stamp Identification** - Upload stamp images for automatic identification
+- ✅ **Gemini-Powered Valuation** - Get estimated values using Google's Gemini AI
+- ✅ **Stamp Logging** - Track your collection with sortable gallery
+- ✅ **eBay Auction Recommendations** - Get suggestions for listing strategy
+- ✅ **Swan-Themed UI** - Elegant, modern interface
 
-*   **Modular Architecture:** A core app with optional premium add-ons for AI-powered features.
-*   **Customizable Workflows:** API plugin support and configurable settings for a tailored experience.
-*   **Elegant Gallery:** A swan-themed, filterable gallery for managing your collection.
-*   **AI-Powered Identification:** Automatically detect stamp details like type, year, country, and value.
-*   **Marketplace Integration:** List items for sale on eBay, Colnect, HipStamp, and more.
-*   **User-Driven AI Training:** Fine-tune the AI models with your own annotated images.
+### Roadmap
+- 🚧 **YOLOv8 Object Detection** - Advanced AI stamp detection
+- 🚧 **Cloud Storage Integration** - OneDrive, Google Drive, iCloud support
+- 🚧 **eBay API Integration** - Direct listing to eBay
+- 🚧 **Offline Listing Mode** - Create listings without network latency
+- 🚧 **Background Removal** - Clean stamp images automatically
+- 🚧 **Catalog Integration** - Match stamps against known catalogs
+- 📋 **Multi-platform** - iOS, Windows, Linux apps
 
 ## Getting Started
 
-*This section will be updated with instructions on how to set up and run the project locally.*
+### Prerequisites
+- Node.js 18+ (LTS recommended)
+- Google Gemini API key ([Get one here](https://ai.google.dev/))
 
-1.  Clone the repo
-    ```sh
-    git clone https://github.com/your_username/stamplicity.git
-    ```
-2.  Install NPM packages
-    ```sh
-    npm install
-    ```
-3.  Run the app
-    ```sh
-    npm start
-    ```
+### Installation
 
-## Roadmap
+1. Clone the repository:
+```bash
+git clone https://github.com/940smiley/Stamplicity.git
+cd Stamplicity
+```
 
-The vision for Stamplicity is extensive. Key areas of development include:
+2. Install dependencies:
+```bash
+npm install
+```
 
-*   **Premium AI Modules:**
-    *   AI-powered listing advertisement creation.
-    *   Scheduled post automation for social media.
-    *   Advanced valuation analytics and smart pricing.
-    *   Provenance verification and automated condition grading.
-*   **Platform Deployment:**
-    *   **iOS App:** A native iOS application built with Swift/Xcode.
-    *   **Windows App:** A C++ application for Windows users.
-    *   **Linux Packaging:** A `.deb` package for easy installation on Debian-based systems.
-*   **AI Model Training:**
-    *   A secure, developer-only backdoor for testing custom AI models.
-    *   An in-app "Train/AI" page for users to annotate images and fine-tune models.
+3. Set up environment variables:
+```bash
+cp .env.local.example .env.local
+# Edit .env.local and add your GEMINI_API_KEY
+```
+
+4. Run the development server:
+```bash
+npm run dev
+```
+
+5. Open [http://localhost:5173](http://localhost:5173) in your browser
+
+### Building for Production
+
+```bash
+npm run build
+npm run preview
+```
+
+## Tech Stack
+
+- **Frontend**: React 19, TypeScript, Tailwind CSS
+- **Build Tool**: Vite 6
+- **AI**: Google Gemini API
+- **Styling**: Tailwind CSS with custom swan theme
+
+## Project Structure
+
+```
+Stamplicity/
+├── src/
+│   ├── components/      # React components
+│   │   ├── Header.tsx
+│   │   ├── StampUploader.tsx
+│   │   ├── StampCard.tsx
+│   │   ├── StampLog.tsx
+│   │   └── ...
+│   ├── services/        # API services
+│   │   └── geminiService.ts
+│   ├── App.tsx          # Main app component
+│   ├── index.tsx        # Entry point
+│   ├── types.ts         # TypeScript types
+│   └── index.css        # Global styles
+├── index.html
+├── package.json
+├── vite.config.ts
+├── tailwind.config.js
+└── tsconfig.json
+```
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are welcome! This is part of a larger consolidation effort to enhance Stamplicity with features from multiple repositories.
 
-*This section will be updated with more detailed contribution guidelines.*
+### Development Workflow
+
+1. Create a feature branch
+2. Make your changes
+3. Test thoroughly
+4. Submit a pull request
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+MIT License - see LICENSE file for details
+
+## Acknowledgments
+
+- Built with ❤️ for stamp collectors
+- Powered by Google Gemini AI
+- Part of the Philately & Collectibles consolidation project
+
+---
+
+**Version**: 1.0.0  
+**Last Updated**: December 2025

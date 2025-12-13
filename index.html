@@ -1,48 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stamplicity</title>
-    <link rel="stylesheet" href="css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stamp Valuer AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.19.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1"
+  }
+}
+</script>
 </head>
-<body>
-    <header>
-        <h1>Stamplicity 🦢</h1>
-        <nav>
-            <a href="#">Gallery</a>
-            <a href="#">Upload</a>
-            <a href="#">Settings</a>
-        </nav>
-    </header>
-    <main>
-        <div class="filter-container">
-            <input type="text" id="filterInput" placeholder="Filter stamps by title...">
-        </div>
-        <div class="gallery-grid">
-            <div class="gallery-item" data-title="USA Liberty 1954">
-                <img src="https://placehold.co/250x250/f8f9fa/343a40?text=USA+1954" alt="USA Liberty 1954">
-            </div>
-            <div class="gallery-item" data-title="UK Penny Black 1840">
-                <img src="https://placehold.co/250x250/f8f9fa/343a40?text=UK+1840" alt="UK Penny Black 1840">
-            </div>
-            <div class="gallery-item" data-title="Canada Beaver 1859">
-                <img src="https://placehold.co/250x250/f8f9fa/343a40?text=Canada+1859" alt="Canada Beaver 1859">
-            </div>
-            <div class="gallery-item" data-title="USA Inverted Jenny 1918">
-                <img src="https://placehold.co/250x250/f8f9fa/343a40?text=USA+1918" alt="USA Inverted Jenny 1918">
-            </div>
-            <div class="gallery-item" data-title="France Ceres 1849">
-                <img src="https://placehold.co/250x250/f8f9fa/343a40?text=France+1849" alt="France Ceres 1849">
-            </div>
-            <div class="gallery-item" data-title="UK Penny Red 1841">
-                <img src="https://placehold.co/250x250/f8f9fa/343a40?text=UK+1841" alt="UK Penny Red 1841">
-            </div>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 Stamplicity. All rights reserved.</p>
-    </footer>
-    <script src="js/main.js"></script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
