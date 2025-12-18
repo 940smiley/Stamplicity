@@ -1,0 +1,15 @@
+/* Sunset Theme */
+:root {
+  --bg-color: #fff8f0;
+  --header-bg: #ffe0bd;
+  --text-color: #4a2c2a;
+  --accent-color: #dd6b20;
+  --border-color: #f7c3a1;
+  --shadow-color: rgba(74, 44, 42, 0.1);
+  --card-bg: #ffe0bd;
+  --hover-bg: #ffd1b3;
+  --error-bg: #feb2b2;
+  --error-text: #c53030;
+  --success-bg: #c6f6d5;
+  --success-text: #2f855a;
+}

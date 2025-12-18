@@ -1,0 +1,5 @@
+/* Base theme styles for Stamplicity */  
+  
+/* Global CSS Variables - will be overridden by specific themes */  
+:root {  
+  --bg-color: #f8f9fa;  

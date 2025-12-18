@@ -1,0 +1,26 @@
+
+import { createValuationService } from '../core';
+import type { StampData } from '../core';
+
+if (!process.env.GEMINI_API_KEY) {
+    throw new Error("GEMINI_API_KEY environment variable not set");
+}
+
+const valuationService = createValuationService(process.env.GEMINI_API_KEY);
+
+export async function identifyAndValueStamp(base64Image: string): Promise<StampData> {
+    try {
+        const result = await valuationService.identifyAndValueStamp({
+            imageData: base64Image
+        });
+
+        return result;
+    } catch (error) {
+        console.error("Error calling valuation service:", error);
+        if (error instanceof Error) {
+            throw new Error(`Stamp identification failed: ${error.message}`);
+        }
+        throw new Error('An unknown error occurred during stamp identification.');
+    }
+}
+

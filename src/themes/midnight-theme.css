@@ -1,0 +1,15 @@
+/* Midnight Dark Theme */
+:root {
+  --bg-color: #121212;
+  --header-bg: #1e1e1e;
+  --text-color: #e0e0e0;
+  --accent-color: #64b5f6;
+  --border-color: #424242;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --card-bg: #1e1e1e;
+  --hover-bg: #2d2d2d;
+  --error-bg: #f5c6cb;
+  --error-text: #d32f2f;
+  --success-bg: #c3e6cb;
+  --success-text: #1b5e20;
+}

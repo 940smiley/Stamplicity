@@ -1,0 +1,15 @@
+/* Forest Light Theme */
+:root {
+  --bg-color: #f0f7f4;
+  --header-bg: #e0f2e9;
+  --text-color: #1a3636;
+  --accent-color: #48bb78;
+  --border-color: #b8e6d3;
+  --shadow-color: rgba(26, 54, 54, 0.1);
+  --card-bg: #e0f2e9;
+  --hover-bg: #c6f0e0;
+  --error-bg: #fed7d7;
+  --error-text: #c53030;
+  --success-bg: #c6f6d5;
+  --success-text: #2f855a;
+}

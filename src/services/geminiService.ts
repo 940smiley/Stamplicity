@@ -1,81 +1,121 @@
-
 import { GoogleGenAI, Type } from '@google/genai';
-import type { StampData } from '../types';
+import type { EnhancedStampData } from '../types';
 
-if (!process.env.API_KEY) {
-    throw new Error("API_KEY environment variable not set");
+if (!process.env.GEMINI_API_KEY) {
+    throw new Error("GEMINI_API_KEY environment variable not set");
 }
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
+// Updated schema to match the EnhancedStampData structure
 const schema = {
-    type: Type.OBJECT,
-    properties: {
-        name: {
-            type: Type.STRING,
-            description: 'The official name or title of the stamp (e.g., "Inverted Jenny").'
-        },
-        country: {
-            type: Type.STRING,
-            description: 'The country of origin for the stamp (e.g., "United States").'
-        },
-        year: {
-            type: Type.STRING,
-            description: 'The estimated year or range the stamp was issued (e.g., "1918").'
-        },
-        description: {
-            type: Type.STRING,
-            description: 'A brief, one-paragraph description of the stamp, its history, and any notable features.'
-        },
-        estimatedValue: {
-            type: Type.STRING,
-            description: 'An estimated eBay auction value range, considering common conditions (e.g., "$5 - $10" or "$100+").'
-        },
-        auctionType: {
-            type: Type.STRING,
-            description: 'The recommended eBay auction type. Must be exactly "Singular Auction" or "Lot Auction".'
-        },
-        justification: {
-            type: Type.STRING,
-            description: 'A brief, one-sentence reason for the auction type recommendation, explaining why it is high or low value.'
-        },
+  type: Type.OBJECT,
+  properties: {
+    name: {
+      type: Type.STRING,
+      description: 'The official name or title of the philatelic item.'
     },
-    required: ['name', 'country', 'year', 'description', 'estimatedValue', 'auctionType', 'justification']
+    country: {
+      type: Type.STRING,
+      description: 'The country or region of origin for the item.'
+    },
+    year: {
+      type: Type.STRING,
+      description: 'The estimated year or range the item was issued or produced.'
+    },
+    description: {
+      type: Type.STRING,
+      description: 'A detailed description of the item, its significance, and any notable features.'
+    },
+    category: {
+      type: Type.STRING,
+      description: 'The category of the item. Must be exactly "stamp", "first-day-cover", "cachet", "postal-history", "aerial-postal-cover", "war-cover", "postcard", "postal-stationery", "proof", "essai", "revenue", or "other".'
+    },
+    subCategory: {
+      type: Type.STRING,
+      description: 'Additional subcategorization (e.g., definitives, commemoratives, booklet panes, etc.)'
+    },
+    printRun: {
+      type: Type.STRING,
+      description: 'Estimated print run or limited edition size if known.'
+    },
+    setNumber: {
+      type: Type.STRING,
+      description: 'Set or series number if applicable.'
+    },
+    grade: {
+      type: Type.STRING,
+      description: 'Condition grade. Must be one of: "mint", "near-mint", "very-fine", "fine", "good", "fair", "poor", "unknown".'
+    },
+    conditionNotes: {
+      type: Type.STRING,
+      description: 'Specific notes about the condition, cancellation marks, or defects.'
+    },
+    estimatedValue: {
+      type: Type.STRING,
+      description: 'An estimated eBay auction value range, considering current market data from Colnect, HipStamp, DelCampe, eBay and other sources (e.g., "$5 - $10" or "$100+").'
+    },
+    valueSource: {
+      type: Type.STRING,
+      description: 'Source of the valuation data (e.g., Colnect, HipStamp, DelCampe, eBay, etc.)'
+    },
+    salesRecommendation: {
+      type: Type.STRING,
+      description: 'Recommended sales approach. Must be exactly "buy-it-now", "auction-lot", "hold", or "research-needed".'
+    },
+    salesJustification: {
+      type: Type.STRING,
+      description: 'Brief reason for the sales recommendation based on item characteristics and market demand.'
+    },
+    recommendedForLot: {
+      type: Type.BOOLEAN,
+      description: 'Whether this item should be grouped with others for auction lots.'
+    },
+    lotGroupId: {
+      type: Type.STRING,
+      description: 'Identifier for the lot group if this item is recommended for grouping with others.'
+    }
+  },
+  required: ['name', 'country', 'year', 'description', 'category', 'grade', 'estimatedValue', 'salesRecommendation', 'salesJustification']
 };
 
-export async function identifyAndValueStamp(base64Image: string): Promise<StampData> {
-    try {
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
-            contents: {
-                parts: [
-                    {
-                        inlineData: {
-                            mimeType: 'image/jpeg',
-                            data: base64Image,
-                        },
-                    },
-                    {
-                        text: 'Analyze this image of a postage stamp. Identify it, provide its details, and recommend an eBay auction strategy based on its likely value. Respond with a JSON object matching the provided schema.',
-                    },
-                ],
-            },
-            config: {
-                responseMimeType: 'application/json',
-                responseSchema: schema,
-            },
-        });
+export async function identifyAndValueStamp(base64Image: string): Promise<EnhancedStampData> {
+  try {
+    const model = ai.models.getModel('gemini-2.5-flash');
+    
+    const prompt = `Analyze this philatelic item image. Identify and categorize it (stamp, first day cover, postcard, cachet, etc.), provide its details, and recommend the best sales strategy based on current market values from Colnect, HipStamp, DelCampe, eBay and other reputable sources.
+    
+    Respond with a JSON object matching the provided schema. Include category, grade, and sales recommendation.`;
 
-        const jsonString = response.text.trim();
-        const stampData: StampData = JSON.parse(jsonString);
-        
-        return stampData;
+    const result = await model.generateContent({
+      contents: [{
+        role: 'user',
+        parts: [
+          { text: prompt },
+          {
+            inlineData: {
+              mimeType: 'image/jpeg',
+              data: base64Image,
+            },
+          },
+        ],
+      }],
+      generationConfig: {
+        responseMimeType: 'application/json',
+        responseSchema: schema,
+      },
+    });
 
-    } catch (error) {
-        console.error("Error calling Gemini API:", error);
-        if (error instanceof Error) {
-            throw new Error(`Gemini API request failed: ${error.message}`);
-        }
-        throw new Error('An unknown error occurred while communicating with the Gemini API.');
+    const jsonString = result.response.text();
+    const stampData: EnhancedStampData = JSON.parse(jsonString);
+
+    return stampData;
+
+  } catch (error) {
+    console.error('Error calling Gemini API:', error);
+    if (error instanceof Error) {
+      throw new Error(`Gemini API request failed: ${error.message}`);
     }
+    throw new Error('An unknown error occurred while communicating with the Gemini API.');
+  }
 }
