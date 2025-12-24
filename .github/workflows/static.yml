@@ -1,35 +1,53 @@
-  # Prepare a clean artifact directory that excludes the workflow files and Git metadata.
-  # Uploading the entire repository (including .github) can cause problems — we exclude it here.
-  - name: Prepare artifact
-    run: |
-      # Create artifact directory
-      mkdir -p artifact
-      # Include dotfiles as well
-      shopt -s dotglob || true
-      # Copy everything except .github and .git into artifact
-      for f in * .[^.]*; do
-        # skip the loop entries that don't exist (bash expands globs even if no match)
-        [ -e "$f" ] || continue
-        if [ "$f" = ".github" ] || [ "$f" = ".git" ]; then
-          continue
-        fi
-        cp -R "$f" artifact/
-      done
-      # Verify artifact is not empty
-      if [ -z "$(ls -A artifact 2>/dev/null)" ]; then
-        echo "Artifact directory is empty. Nothing to deploy." >&2
-        exit 1
-      fi
+name: Deploy static site to GitHub Pages
 
-  - name: Setup Pages
-    uses: actions/configure-pages@v5
+on:
+  push:
+    branches:
+      - main
 
-  - name: Upload artifact
-    uses: actions/upload-pages-artifact@v3
-    with:
-      # Upload only the prepared artifact, excluding workflow files
-      path: artifact
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-  - name: Deploy to GitHub Pages
-    id: deployment
-    uses: actions/deploy-pages@v4
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare artifact
+        # Use bash to ensure shopt is available
+        shell: bash
+        run: |
+          # Create artifact directory
+          mkdir -p artifact
+          # Include dotfiles as well (shopt is a bash builtin)
+          shopt -s dotglob || true
+          # Copy everything except .github and .git into artifact
+          for f in * .[^.]*; do
+            # skip the loop entries that don't exist (bash expands globs even if no match)
+            [ -e "$f" ] || continue
+            if [ "$f" = ".github" ] || [ "$f" = ".git" ]; then
+              continue
+            fi
+            cp -R "$f" artifact/
+          done
+          # Verify artifact is not empty
+          if [ -z "$(ls -A artifact 2>/dev/null)" ]; then
+            echo "Artifact directory is empty. Nothing to deploy." >&2
+            exit 1
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: artifact
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
