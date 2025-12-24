@@ -1,43 +1,35 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+  # Prepare a clean artifact directory that excludes the workflow files and Git metadata.
+  # Uploading the entire repository (including .github) can cause problems — we exclude it here.
+  - name: Prepare artifact
+    run: |
+      # Create artifact directory
+      mkdir -p artifact
+      # Include dotfiles as well
+      shopt -s dotglob || true
+      # Copy everything except .github and .git into artifact
+      for f in * .[^.]*; do
+        # skip the loop entries that don't exist (bash expands globs even if no match)
+        [ -e "$f" ] || continue
+        if [ "$f" = ".github" ] || [ "$f" = ".git" ]; then
+          continue
+        fi
+        cp -R "$f" artifact/
+      done
+      # Verify artifact is not empty
+      if [ -z "$(ls -A artifact 2>/dev/null)" ]; then
+        echo "Artifact directory is empty. Nothing to deploy." >&2
+        exit 1
+      fi
 
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["feat/initial-project-structure"]
+  - name: Setup Pages
+    uses: actions/configure-pages@v5
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  - name: Upload artifact
+    uses: actions/upload-pages-artifact@v3
+    with:
+      # Upload only the prepared artifact, excluding workflow files
+      path: artifact
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+  - name: Deploy to GitHub Pages
+    id: deployment
+    uses: actions/deploy-pages@v4
