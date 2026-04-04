@@ -7,6 +7,7 @@ Stamplicity is a comprehensive platform for stamp collectors that combines AI-po
 ## Features
 
 ### Current (v1.0)
+
 - ✅ **AI Stamp Identification** - Upload stamp images for automatic identification
 - ✅ **Gemini-Powered Valuation** - Get estimated values using Google's Gemini AI
 - ✅ **Stamp Logging** - Track your collection with sortable gallery
@@ -14,6 +15,7 @@ Stamplicity is a comprehensive platform for stamp collectors that combines AI-po
 - ✅ **Swan-Themed UI** - Elegant, modern interface
 
 ### Roadmap
+
 - 🚧 **YOLOv8 Object Detection** - Advanced AI stamp detection
 - 🚧 **Cloud Storage Integration** - OneDrive, Google Drive, iCloud support
 - 🚧 **eBay API Integration** - Direct listing to eBay
@@ -25,34 +27,39 @@ Stamplicity is a comprehensive platform for stamp collectors that combines AI-po
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 18+ (LTS recommended)
 - Google Gemini API key ([Get one here](https://ai.google.dev/))
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/940smiley/Stamplicity.git
 cd Stamplicity
 ```
 
-2. Install dependencies:
+1. Install dependencies:
+
 ```bash
 npm install
 ```
 
-3. Set up environment variables:
+1. Set up environment variables:
+
 ```bash
 cp .env.local.example .env.local
 # Edit .env.local and add your GEMINI_API_KEY
 ```
 
-4. Run the development server:
+1. Run the development server:
+
 ```bash
 npm run dev
 ```
 
-5. Open [http://localhost:5173](http://localhost:5173) in your browser
+1. Open [http://localhost:5173](http://localhost:5173) in your browser
 
 ### Building for Production
 
@@ -115,5 +122,5 @@ MIT License - see LICENSE file for details
 
 ---
 
-**Version**: 1.0.0  
+**Version**: 1.0.0
 **Last Updated**: December 2025

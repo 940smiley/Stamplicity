@@ -22,7 +22,7 @@ const StampLog: React.FC<StampLogProps> = ({ stamps, onRemove, onUpdate, sortBy,
           My Stamp Log ({stamps.length})
         </h2>
         {stamps.length > 1 && (
-            <SortControls 
+            <SortControls
                 sortBy={sortBy}
                 sortOrder={sortOrder}
                 onSortByChange={onSortByChange}
@@ -44,3 +44,4 @@ const StampLog: React.FC<StampLogProps> = ({ stamps, onRemove, onUpdate, sortBy,
 };
 
 export default StampLog;
+

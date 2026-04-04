@@ -36,3 +36,4 @@ const SortControls: React.FC<SortControlsProps> = ({ sortBy, sortOrder, onSortBy
 };
 
 export default SortControls;
+

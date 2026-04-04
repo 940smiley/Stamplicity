@@ -37,7 +37,7 @@ const StampUploader: React.FC<StampUploaderProps> = ({ onImageUpload }) => {
   const triggerFileSelect = () => {
       fileInputRef.current?.click();
   };
-  
+
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
   };
@@ -58,7 +58,7 @@ const StampUploader: React.FC<StampUploaderProps> = ({ onImageUpload }) => {
   return (
     <div className="space-y-4">
       {!preview ? (
-        <div 
+        <div
           className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 hover:bg-slate-50 transition-colors"
           onClick={triggerFileSelect}
           onDragOver={handleDragOver}
@@ -111,3 +111,4 @@ const StampUploader: React.FC<StampUploaderProps> = ({ onImageUpload }) => {
 };
 
 export default StampUploader;
+

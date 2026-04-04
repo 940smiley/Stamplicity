@@ -1,13 +1,13 @@
-/* Default Swan Theme */  
-:root {  
-  --bg-color: #f8f9fa;  
-  --header-bg: #ffffff;  
-  --text-color: #343a40;  
-  --accent-color: #4a90e2;  
-  --border-color: #dee2e6;  
-  --shadow-color: rgba(0, 0, 0, 0.05);  
-  --card-bg: #ffffff;  
-  --hover-bg: #f1f3f4;  
-  --error-bg: #f8d7da;  
-  --error-text: #721c24;  
-  --success-bg: #d4edda;  
+/* Default Swan Theme */
+:root {
+  --bg-color: #f8f9fa;
+  --header-bg: #ffffff;
+  --text-color: #343a40;
+  --accent-color: #4a90e2;
+  --border-color: #dee2e6;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --card-bg: #ffffff;
+  --hover-bg: #f1f3f4;
+  --error-bg: #f8d7da;
+  --error-text: #721c24;
+  --success-bg: #d4edda;

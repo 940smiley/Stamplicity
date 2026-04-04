@@ -99,15 +99,15 @@ export const storeTheme = (themeId: string): void => {
 export const applyTheme = (themeId: string): void => {
   const theme = availableThemes.find(t => t.id === themeId) || availableThemes[0];
   const root = document.documentElement;
-  
+
   // Clear all existing theme properties
   root.className = root.className.replace(/theme-\w+/g, '');
   root.classList.add(`theme-${theme.id.replace('-theme', '')}`);
-  
+
   Object.entries(theme.properties).forEach(([property, value]) => {
     root.style.setProperty(property, value);
   });
-  
+
   // Add/remove dark class to body for dark themes
   if (theme.isDark) {
     document.body.classList.add("dark");

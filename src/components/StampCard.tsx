@@ -45,7 +45,7 @@ const StampCard: React.FC<StampCardProps> = ({ stamp, onRemove, onUpdate }) => {
         });
         setIsEditing(false);
     };
-    
+
     const inputClass = "w-full p-2 border bg-white border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-slate-800";
     const textareaClass = `${inputClass} min-h-[100px] resize-y`;
 
@@ -54,16 +54,16 @@ const StampCard: React.FC<StampCardProps> = ({ stamp, onRemove, onUpdate }) => {
     <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden transition-shadow hover:shadow-xl relative">
        <div className="absolute top-2 right-2 flex space-x-1.5">
         {!isEditing && (
-             <button 
-                onClick={() => setIsEditing(true)} 
+             <button
+                onClick={() => setIsEditing(true)}
                 className="p-1.5 bg-slate-100 text-slate-500 rounded-full hover:bg-blue-100 hover:text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
                 aria-label="Edit stamp"
               >
                 <PencilIcon className="w-4 h-4" />
               </button>
         )}
-        <button 
-          onClick={() => onRemove(stamp.id)} 
+        <button
+          onClick={() => onRemove(stamp.id)}
           className="p-1.5 bg-slate-100 text-slate-500 rounded-full hover:bg-red-100 hover:text-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Remove stamp"
           disabled={isEditing}
@@ -100,7 +100,7 @@ const StampCard: React.FC<StampCardProps> = ({ stamp, onRemove, onUpdate }) => {
                 <p className="text-md text-slate-500">{stamp.country}, {stamp.year}</p>
             </div>
           )}
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className={`p-4 rounded-lg flex items-start space-x-3 ${isSingular ? 'bg-green-50 border-green-200 border' : 'bg-blue-50 border-blue-200 border'}`}>
               <div className={`p-2 rounded-full ${isSingular ? 'bg-green-100' : 'bg-blue-100'}`}>
@@ -133,7 +133,7 @@ const StampCard: React.FC<StampCardProps> = ({ stamp, onRemove, onUpdate }) => {
               </div>
             </div>
           </div>
-          
+
           <div>
             <div className="flex items-center space-x-2 mb-2">
                 <InfoIcon className="w-5 h-5 text-slate-400" />
@@ -176,3 +176,4 @@ const StampCard: React.FC<StampCardProps> = ({ stamp, onRemove, onUpdate }) => {
 };
 
 export default StampCard;
+

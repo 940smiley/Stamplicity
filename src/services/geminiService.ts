@@ -82,9 +82,9 @@ const schema = {
 export async function identifyAndValueStamp(base64Image: string): Promise<EnhancedStampData> {
   try {
     const model = ai.models.getModel('gemini-2.5-flash');
-    
+
     const prompt = `Analyze this philatelic item image. Identify and categorize it (stamp, first day cover, postcard, cachet, etc.), provide its details, and recommend the best sales strategy based on current market values from Colnect, HipStamp, DelCampe, eBay and other reputable sources.
-    
+
     Respond with a JSON object matching the provided schema. Include category, grade, and sales recommendation.`;
 
     const result = await model.generateContent({

@@ -26,7 +26,7 @@ const App: React.FC = () => {
         if (!base64Image) {
             throw new Error("Failed to read image file.");
         }
-        
+
         try {
             const newStampData = await identifyAndValueStamp(base64Image);
             const newStamp: Stamp = {
@@ -58,7 +58,7 @@ const App: React.FC = () => {
       setIsLoading(false);
     }
   }, []);
-  
+
   const handleRemoveStamp = (id: number) => {
     setStamps(prevStamps => prevStamps.filter(stamp => stamp.id !== id));
   };
@@ -96,7 +96,7 @@ const App: React.FC = () => {
           comparison = b.id - a.id; // b - a for descending (newest first)
           break;
       }
-      
+
       if (sortBy === 'date') {
         return sortOrder === 'asc' ? -comparison : comparison;
       }
@@ -128,9 +128,9 @@ const App: React.FC = () => {
             )}
             {error && <div className="mt-4 text-red-600 bg-red-100 p-3 rounded-md">{error}</div>}
           </div>
-          
-          <StampLog 
-            stamps={sortedStamps} 
+
+          <StampLog
+            stamps={sortedStamps}
             onRemove={handleRemoveStamp}
             onUpdate={handleUpdateStamp}
             sortBy={sortBy}
@@ -145,3 +145,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
